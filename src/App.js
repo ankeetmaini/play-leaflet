@@ -1,7 +1,10 @@
 import React from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+
 import "leaflet/dist/leaflet.css";
 import "./App.css";
+
+import Freedraw from "./FreeDraw";
 
 class App extends React.Component {
   constructor() {
@@ -13,6 +16,14 @@ class App extends React.Component {
     };
   }
 
+  handleModeChange = (...args) => {
+    console.log("handleModeChange: ", args);
+  };
+
+  handleOnMarkers = (...args) => {
+    console.log("handleOnMarkers: ", args);
+  };
+
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
@@ -23,6 +34,11 @@ class App extends React.Component {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
+        <Freedraw
+          mode={window.FreeDraw.ALL}
+          onMarkers={this.handleOnMarkers}
+          onModeChange={this.handleModeChange}
+        />
       </Map>
     );
   }
