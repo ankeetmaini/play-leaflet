@@ -3,7 +3,7 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./App.css";
 
-import Freedraw from "react-leaflet-freedraw";
+import Freedraw, {ALL, CREATE, EDIT, DELETE, CREATE_POLYLINE, APPEND} from "react-leaflet-freedraw";
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +12,7 @@ class App extends React.Component {
       lat: 51.505,
       lng: -0.09,
       zoom: 13,
-      mode: window.FreeDraw.ALL
+      mode: window.ALL
     };
   }
 
@@ -28,9 +28,6 @@ class App extends React.Component {
     console.log("handleModeChange: ", args);
   };
 
-  onLayerRemove = (...args) => {
-    console.log('onLayerRemove: ', args);
-  }
 
   render() {
     const position = [this.state.lat, this.state.lng];
@@ -54,20 +51,25 @@ class App extends React.Component {
         </Map>
         <div style={{ margin: 20 }}>
           <button
-            onClick={() => this.setState({ mode: window.FreeDraw.CREATE })}
+            onClick={() => this.setState({ mode: CREATE })}
           >
             CREATE
           </button>
-          <button onClick={() => this.setState({ mode: window.FreeDraw.EDIT })}>
+          <button
+            onClick={() => this.setState({ mode: CREATE_POLYLINE })}
+          >
+            CREATE_POLYLINE
+          </button>
+          <button onClick={() => this.setState({ mode: EDIT })}>
             EDIT
           </button>
           <button
-            onClick={() => this.setState({ mode: window.FreeDraw.DELETE })}
+            onClick={() => this.setState({ mode: DELETE })}
           >
             DELETE
           </button>
           <button
-            onClick={() => this.setState({ mode: window.FreeDraw.APPEND })}
+            onClick={() => this.setState({ mode: APPEND })}
           >
             APPEND
           </button>
